@@ -5136,6 +5136,16 @@ struct mg_context *mg_start(const struct mg_callbacks *callbacks,
     }
   }
 
+  // Redirect stdout to the log file.
+  if (ctx->config[ERROR_LOG_FILE] != NULL) {
+    FILE *fp;
+
+    fp = fopen(ctx->config[ERROR_LOG_FILE], "a+");
+    if (fp) {
+      dup2(fileno(fp), fileno(stdout));
+    }
+  }
+
   // NOTE(lsm): order is important here. SSL certificates must
   // be initialized before listening ports. UID must be set last.
   if (!set_gpass_option(ctx) ||
