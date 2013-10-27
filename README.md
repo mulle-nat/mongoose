@@ -1,6 +1,7 @@
 # Project Mission
 
 Project mission is to provide easy to use, powerful, embeddable web server.
+This is the last MIT licensed version of mongoose. 
 
 # Overview
 
